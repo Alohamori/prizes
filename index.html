@@ -1,0 +1,51 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Whose prize is it anyway?</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="data.js"></script>
+    <script src="util.js"></script>
+    <script src="misc.js"></script>
+  </head>
+  <body>
+    <div id="ui">
+      <div id="ask">
+        In <span id="series"></span>, who brought this in as<br>
+        <span id="category"></span>?
+      </div>
+      <div id="stats" class="tap" onclick="toggle_settings()">
+        <span id="score">0</span><span id="attempts">/0</span><span id="total">/0</span>
+      </div>
+      <div id="prize" class="tap" onclick="handle_next()"><img id="frame" src="ui/frame.png" /></div>
+      <div id="cast"></div>
+    </div>
+
+    <div id="settings">
+      <b>Series</b>
+      <a href="javascript: toggle_series(1)" class="tap">Select all</a>
+      <a href="javascript: toggle_series(0)" class="tap">none</a>
+      <div id="series-box"></div><br>
+      <b>Points</b>
+      <a href="javascript: toggle_points(1)" class="tap">Select all</a>
+      <a href="javascript: toggle_points(0)" class="tap">none</a>
+      <div id="points-box"></div><br>
+      <label><input type="checkbox" id="box-specials"> Include specials</label><br>
+      <label><input type="checkbox" id="box-giveaways"> Include dead giveaways</label><br>
+      <label><input type="checkbox" id="box-advance" onchange="handle_advance()"> Automatically advance</label><br>
+      <label>after <input type="number" id="num-right" step="0.5" value="0.5" min="0" /> seconds when right</label><br>
+      <label>after <input type="number" id="num-wrong" step="0.5" value="1.5" min="0" /> seconds when wrong</label><br>
+      <button onclick="save_settings()">Save and continue</button>
+      <button onclick="save_settings(1)">Save and RESET progress</button>
+    </div>
+
+    <div id="modal" onclick="hide_modal()">
+      <div id="alert">
+        <p>Welcome to <b><i>Whose prize is it anyway?</i></b>!</p>
+        <p>Gameplay should be self-explanatory, but you probably shouldn't try to do them all in one sitting.</p>
+        <p>Your progress is automatically saved, so you can leave and come back at any time.</p>
+        <p>Moreover, you are strongly encouraged to <strong><span id="act">tap</span> your score</strong> in the top-right corner to explore the various filtering options.</p>
+        <p>Press any pixel to never see this message again.</p>
+      </div>
+    </div>
+  </body>
+</html>
