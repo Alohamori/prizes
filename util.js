@@ -20,6 +20,10 @@ Array.prototype.tally = function(fn) {
   return res;
 };
 
+if (![].at) {
+  Array.prototype.at = function(i) { return this[i < 0 ? this.length + i : i] };
+}
+
 Array.prototype.sort_by = function(fn) {
   return this.toSorted((a, b) => fn(a) - fn(b));
 };
