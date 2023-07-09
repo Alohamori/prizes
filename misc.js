@@ -224,9 +224,10 @@ const save_settings = reset => {
   init();
 };
 
-window.onbeforeunload = () => {
-  localStorage.wpiia_data = JSON.stringify({settings, progress, final});
-};
+document.addEventListener('visibilitychange', () => {
+  if (document.visibilityState == 'hidden')
+    localStorage.wpiia_data = JSON.stringify({settings, progress, final});
+});
 
 document.onkeyup = e => {
   if (e.key > '0' && e.key < '6')
