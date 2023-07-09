@@ -233,12 +233,14 @@ document.onkeyup = e => {
     qsa('.seat')[e.key - 1].click();
 }
 
-screen.orientation.onchange = e => {
-  if ((e.target.angle / 90) % 2)
-    document.documentElement.requestFullscreen();
-  else
-    document.exitFullscreen();
-};
+if (screen.orientation) {
+  screen.orientation.onchange = e => {
+    if ((e.target.angle / 90) % 2)
+      document.documentElement.requestFullscreen();
+    else
+      document.exitFullscreen();
+  };
+}
 
 const hide_modal = () => qs('#modal').style.display = 'none';
 const show_modal = () => qs('#modal').style.display = 'flex';
